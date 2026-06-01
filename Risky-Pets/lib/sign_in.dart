@@ -40,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
           await GoogleSignIn.instance.authenticate(
         scopeHint: ['email', 'profile'],
       );
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final authClient = GoogleSignIn.instance.authorizationClient;
       final authorization = await authClient.authorizationForScopes([
         'email',
@@ -238,21 +238,35 @@ class _SignInScreenState extends State<SignInScreen> {
                         minimumSize: const Size(0, 0),
                       ),
                       onPressed: () async {
-                        try{
-                          await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim(),);
+                        final email = _emailController.text.trim();
+                        if (email.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Please enter your email address first.'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                          return;
+                        }
+                        try {
+                          await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+                          if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Password reset email sent. Please check your inbox.'),
                                 backgroundColor: Colors.green,
                               ),
                             );
+                          }
                         } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('failed to send password reset email.'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Failed to send password reset email.'),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
                         }
                       },
                       child: const Text('Forgot Password?'),

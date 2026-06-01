@@ -80,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           await GoogleSignIn.instance.authenticate(
         scopeHint: ['email', 'profile'],
       );
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final authClient = GoogleSignIn.instance.authorizationClient;
       final authorization = await authClient.authorizationForScopes([
         'email',
