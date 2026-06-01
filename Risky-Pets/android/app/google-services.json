@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "823512595658",
+    "project_id": "risky-pets-8be2e",
+    "storage_bucket": "risky-pets-8be2e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823512595658:android:c55f1bbfe4d98da8e1c833",
+        "android_client_info": {
+          "package_name": "com.example.risky_pets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823512595658-b509aumrlbabsdnqrfi56lr7584i1am4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0F5SIDOW1sVl5gPshCVQAO6mwF8QzZmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823512595658-b509aumrlbabsdnqrfi56lr7584i1am4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
